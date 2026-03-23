@@ -1,0 +1,221 @@
+# Atividade-1-Yago-Richard-4231921388
+Ativiade Hans on - 1 
+
+package rafa1;
+import java.util.Scanner;
+public class Rafa1 {
+public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int opcao;
+
+        do {
+            System.out.println("\n===== MENU =====");
+            System.out.println("1 - Par ou Ímpar");
+            System.out.println("2 - Maior de dois");
+            System.out.println("3 - Calculadora");
+            System.out.println("4 - Validação de nota");
+            System.out.println("5 - Maior e menor (até 0)");
+            System.out.println("6 - Simulador de caixa");
+            System.out.println("7 - Desconto");
+            System.out.println("8 - Contagem de valores");
+            System.out.println("9 - Soma de 1 até N");
+            System.out.println("10 - Contagem regressiva");
+            System.out.println("0 - Sair");
+            System.out.print("Escolha: ");
+
+            opcao = sc.nextInt();
+
+            switch (opcao) {
+
+                case 1:
+                    System.out.print("Número: ");
+                    int num = sc.nextInt();
+                    if (num % 2 == 0)
+                        System.out.println("PAR");
+                    else
+                        System.out.println("ÍMPAR");
+                    break;
+
+                case 2:
+                    System.out.print("Digite dois números: ");
+                    int a = sc.nextInt();
+                    int b = sc.nextInt();
+
+                    if (a > b)
+                        System.out.println("Maior: " + a);
+                    else if (b > a)
+                        System.out.println("Maior: " + b);
+                    else
+                        System.out.println("Iguais");
+                    break;
+
+                case 3:
+                System.out.println("1- Somar\n2- Subtrair\n3- Multiplicar\n4- Dividir");
+
+                System.out.print("Escolha a operação: ");
+                int op = sc.nextInt();
+
+                System.out.print("Digite dois números: ");
+                double x = sc.nextDouble();
+                double y = sc.nextDouble();
+
+                switch (op) {
+                    case 1:
+                        System.out.println("Resultado: " + (x + y));
+                        break;
+                    case 2:
+                        System.out.println("Resultado: " + (x - y));
+                        break;
+                    case 3:
+                        System.out.println("Resultado: " + (x * y));
+                        break;
+                    case 4:
+                        if (y == 0)
+                            System.out.println("Erro: divisão por zero!");
+                        else
+                            System.out.println("Resultado: " + (x / y));
+                        break;
+                    default:
+                        System.out.println("Opção inválida!");
+                }
+                break;
+
+                case 4:
+                    double nota;
+                    do {
+                        System.out.print("Nota (0 a 100): ");
+                        nota = sc.nextDouble();
+                    } while (nota < 0 || nota > 100);
+
+                    System.out.println("Nota válida: " + nota);
+                    break;
+
+                case 5:
+                    int valor;
+                    int maior = Integer.MIN_VALUE;
+                    int menor = Integer.MAX_VALUE;
+
+                    do {
+                        System.out.print("Número (0 para sair): ");
+                        valor = sc.nextInt();
+
+                        if (valor != 0) {
+                            if (valor > maior) maior = valor;
+                            if (valor < menor) menor = valor;
+                        }
+
+                    } while (valor != 0);
+
+                    System.out.println("Maior: " + maior);
+                    System.out.println("Menor: " + menor);
+                    break;
+
+                case 6:
+                    double saldo = 1000;
+                    int opCaixa;
+
+                    do {
+                        System.out.println("\n1- Depositar\n2- Sacar\n3- Ver saldo\n4- Sair");
+                        opCaixa = sc.nextInt();
+
+                        if (opCaixa == 1) {
+                            System.out.print("Depósito: ");
+                            double dep = sc.nextDouble();
+                            if (dep > 0) saldo += dep;
+                            else System.out.println("Valor inválido!");
+                        }
+
+                        else if (opCaixa == 2) {
+                            System.out.print("Saque: ");
+                            double saque = sc.nextDouble();
+                            if (saque > 0 && saque <= saldo)
+                                saldo -= saque;
+                            else
+                                System.out.println("Saque inválido!");
+                        }
+
+                        else if (opCaixa == 3) {
+                            System.out.println("Saldo: R$ " + saldo);
+                        }
+
+                    } while (opCaixa != 4);
+
+                    System.out.println("Saldo final: R$ " + saldo);
+                    break;
+
+                case 7:
+                    System.out.print("Valor da compra: ");
+                    double valorCompra = sc.nextDouble();
+
+                    System.out.print("Categoria (1,2,3): ");
+                    int cat = sc.nextInt();
+
+                    double desconto = 0;
+
+                    if (cat == 1) desconto = valorCompra * 0.05;
+                    else if (cat == 2) desconto = valorCompra * 0.10;
+                    else if (cat == 3) desconto = valorCompra * 0.15;
+                    else {
+                        System.out.println("Categoria inválida!");
+                        break;
+                    }
+
+                    System.out.println("Desconto: R$ " + desconto);
+                    System.out.println("Total: R$ " + (valorCompra - desconto));
+                    break;
+
+                case 8:
+                    int pos = 0, neg = 0, zero = 0;
+
+                    for (int i = 0; i < 10; i++) {
+                        System.out.print("Número: ");
+                        int n = sc.nextInt();
+
+                        if (n > 0) pos++;
+                        else if (n < 0) neg++;
+                        else zero++;
+                    }
+
+                    System.out.println("Positivos: " + pos);
+                    System.out.println("Negativos: " + neg);
+                    System.out.println("Zeros: " + zero);
+                    break;
+
+                case 9:
+                    System.out.print("Digite N: ");
+                    int N = sc.nextInt();
+
+                    int soma = 0;
+                    for (int i = 1; i <= N; i++) {
+                        soma += i;
+                    }
+
+                    System.out.println("Soma: " + soma);
+                    break;
+
+                case 10:
+                    System.out.print("Digite N (>0): ");
+                    int n10 = sc.nextInt();
+
+                    int soma2 = 0;
+                    for (int i = n10; i >= 1; i--) {
+                        System.out.print(i + " ");
+                        soma2 += i;
+                    }
+
+                    System.out.println("\nSoma = " + soma2);
+                    break;
+
+                case 0:
+                    System.out.println("Encerrando...");
+                    break;
+
+                default:
+                    System.out.println("Opção inválida!");
+            }
+
+        } while (opcao != 0);
+
+        sc.close();
+    }
+}
